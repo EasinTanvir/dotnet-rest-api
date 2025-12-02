@@ -1,0 +1,114 @@
+@RestApi_HostAddress = http://localhost:5236
+
+### WEATHER FORECAST (Default)
+GET {{RestApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+### REGISTER USER
+POST {{RestApi_HostAddress}}/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Tanvir",
+  "email": "tanvir@gmail.com",
+  "password": "12345"
+}
+
+###
+
+### LOGIN USER
+POST {{RestApi_HostAddress}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "tanvir@gmail.com",
+  "password": "12345"
+}
+
+
+### CREATE JOB
+POST {{RestApi_HostAddress}}/api/job/create
+Content-Type: application/json
+{
+  "title": "React Developer",
+  "description": "Frontend React Developer needed",
+  "salary": 55000,
+  "location": "Dhaka",
+  "category": "remote",
+  "jobType": "full-time",
+  "requiredSkills": "React, HTML, CSS, Redux",
+  "userId": 1
+}
+
+### GET ALL JOBS
+GET {{RestApi_HostAddress}}/api/job/all
+Accept: application/json
+
+### GET JOBS BY CATEGORY (remote)
+GET {{RestApi_HostAddress}}/api/job/all?category=remote
+Accept: application/json
+
+
+
+### SEARCH JOBS BY TITLE (developer)
+GET {{RestApi_HostAddress}}/api/job/all?search=developer
+Accept: application/json
+
+
+### PAGINATION (page 1, pageSize 5)
+GET {{RestApi_HostAddress}}/api/job/all?page=1&pageSize=5
+Accept: application/json
+
+
+### CATEGORY + PAGINATION
+GET {{RestApi_HostAddress}}/api/job/all?category=onsite&page=1&pageSize=3
+Accept: application/json
+
+
+### SEARCH + PAGINATION
+GET {{RestApi_HostAddress}}/api/job/all?search=developer&page=1&pageSize=2
+Accept: application/json
+
+
+### FULL FILTER: CATEGORY + SEARCH + PAGINATION
+GET {{RestApi_HostAddress}}/api/job/all?category=remote&search=react&page=1&pageSize=5
+Accept: application/json
+
+
+
+### GET JOBS FOR SPECIFIC USER
+GET {{RestApi_HostAddress}}/api/job/user/1
+Accept: application/json
+
+
+
+
+### APPLY TO JOB
+POST {{RestApi_HostAddress}}/api/application/apply
+Content-Type: application/json
+
+{
+  "jobId": 1,
+  "userId": 2
+}
+
+###
+
+### VIEW APPLICANTS FOR A JOB (Owner)
+GET {{RestApi_HostAddress}}/api/application/applicants/1
+
+###
+
+### OWNER ACCEPT/REJECT APPLICATION
+PUT {{RestApi_HostAddress}}/api/application/update-status/1
+Content-Type: application/json
+
+"Accepted"
+
+###
+
+### USER VIEW THEIR APPLICATIONS
+GET {{RestApi_HostAddress}}/api/application/my-applications/2
+
