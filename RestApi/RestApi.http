@@ -4,7 +4,7 @@
 GET {{RestApi_HostAddress}}/weatherforecast/
 Accept: application/json
 
-###
+
 
 ### REGISTER USER
 POST {{RestApi_HostAddress}}/api/auth/register
