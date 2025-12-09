@@ -6,15 +6,16 @@ import { useRouter } from "next/navigation";
 export default function ApplicantsList({ applicants, jobId }) {
   const router = useRouter();
 
-  const updateStatus = async (id, status) => {
+  const updateStatus = async (applicationId, status) => {
     await axios.put(
-      `http://localhost:5236/api/application/update-status/${id}`,
-      status,
-      { headers: { "Content-Type": "application/json" } }
+      `http://localhost:5236/api/application/update-status/${applicationId}`,
+      JSON.stringify(status),
+      {
+        headers: { "Content-Type": "application/json" },
+      }
     );
 
-    // Refresh SSR data
-    router.refresh();
+    router.refresh(); // Refresh SSR data
   };
 
   if (applicants.length === 0) {
