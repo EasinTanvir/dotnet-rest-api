@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Link from "next/link";
 
 const API_BASE = "http://localhost:5236/api/job/all";
 
@@ -88,9 +89,10 @@ export default function HomeJobList({ initialData }) {
         )}
 
         {jobs.map((job) => (
-          <div
+          <Link
+            href={`/job/${job.id}`}
             key={job.id}
-            className="p-5 bg-white rounded-xl shadow hover:shadow-lg transition"
+            className="p-5 bg-white rounded-xl shadow hover:shadow-lg transition block"
           >
             <h2 className="text-xl font-semibold">{job.title}</h2>
             <p className="text-gray-600 mt-1 line-clamp-2">{job.description}</p>
@@ -113,7 +115,7 @@ export default function HomeJobList({ initialData }) {
             <p className="mt-3 text-xs text-blue-600">
               Skills: {job.requiredSkills}
             </p>
-          </div>
+          </Link>
         ))}
       </div>
 
