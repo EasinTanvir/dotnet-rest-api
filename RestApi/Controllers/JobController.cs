@@ -30,6 +30,18 @@ namespace RestApi.Controllers
             return Ok(request);
         }
 
+        // GET JOB DETAILS
+        [HttpGet("{jobId}")]
+        public async Task<IActionResult> GetJobDetails(int jobId)
+        {
+            var job = await _db.Jobs.FindAsync(jobId);
+
+            if (job == null)
+                return NotFound(new { message = "Job not found" });
+
+            return Ok(job);
+        }
+
         // GET JOBS FOR A SPECIFIC USER
         [HttpGet("user/{userId}")]
         public async Task<IActionResult> GetJobsByUser(int userId)

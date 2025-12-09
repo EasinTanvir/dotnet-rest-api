@@ -42,9 +42,15 @@ Content-Type: application/json
   "userId": 1
 }
 
+
 ### GET ALL JOBS
 GET {{RestApi_HostAddress}}/api/job/all
 Accept: application/json
+
+### GET JOB DETAILS
+GET {{RestApi_HostAddress}}/api/job/1
+Accept: application/json
+
 
 ### GET JOBS BY CATEGORY (remote)
 GET {{RestApi_HostAddress}}/api/job/all?category=remote
