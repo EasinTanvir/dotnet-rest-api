@@ -4,9 +4,11 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import api from "@/api";
 import toast from "react-hot-toast";
+import { useGlobalContext } from "@/hooks/useGlobalContext";
 
 export default function LoginPage() {
   const router = useRouter();
+  const { loginUser } = useGlobalContext();
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -23,9 +25,8 @@ export default function LoginPage() {
       console.log("data", data);
       toast.success("Login Success");
 
-      localStorage.setItem("user", JSON.stringify(data));
+      loginUser(data);
 
-      router.refresh();
       router.push("/");
     } catch (err) {
       setError(err.response?.data?.message || "Login failed");
