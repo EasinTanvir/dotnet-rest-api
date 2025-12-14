@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
+import JobCard from "./JobCard";
 
 const API_BASE = "http://localhost:5236/api/job/all";
 
@@ -87,35 +88,8 @@ export default function HomeJobList({ initialData }) {
             No jobs found.
           </p>
         )}
-
         {jobs.map((job) => (
-          <Link
-            href={`/job/${job.id}`}
-            key={job.id}
-            className="p-5 bg-white rounded-xl shadow hover:shadow-lg transition block"
-          >
-            <h2 className="text-xl font-semibold">{job.title}</h2>
-            <p className="text-gray-600 mt-1 line-clamp-2">{job.description}</p>
-
-            <div className="mt-2 text-sm text-gray-700">
-              <p>
-                <strong>Category:</strong> {job.category}
-              </p>
-              <p>
-                <strong>Type:</strong> {job.jobType}
-              </p>
-              <p>
-                <strong>Location:</strong> {job.location}
-              </p>
-              <p>
-                <strong>Salary:</strong> ${job.salary}
-              </p>
-            </div>
-
-            <p className="mt-3 text-xs text-blue-600">
-              Skills: {job.requiredSkills}
-            </p>
-          </Link>
+          <JobCard key={job.id} job={job} />
         ))}
       </div>
 

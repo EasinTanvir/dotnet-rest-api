@@ -38,22 +38,23 @@ export default function ApplicantsList({ applicants, jobId }) {
           <p className="text-gray-700">
             <strong>Status:</strong> {app.status}
           </p>
+          {app.status === "Pending" && (
+            <div className="mt-3 flex gap-3">
+              <button
+                onClick={() => updateStatus(app.id, "Accepted")}
+                className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+              >
+                Accept
+              </button>
 
-          <div className="mt-3 flex gap-3">
-            <button
-              onClick={() => updateStatus(app.id, "Accepted")}
-              className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
-            >
-              Accept
-            </button>
-
-            <button
-              onClick={() => updateStatus(app.id, "Rejected")}
-              className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
-            >
-              Reject
-            </button>
-          </div>
+              <button
+                onClick={() => updateStatus(app.id, "Rejected")}
+                className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+              >
+                Reject
+              </button>
+            </div>
+          )}
         </div>
       ))}
     </div>
